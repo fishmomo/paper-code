@@ -1,0 +1,27 @@
+from  multiprocessing import Pool, Manager
+import time, random
+import numpy as np
+
+def show(num, user_dict):
+    time.sleep(random.random())
+    print(num)
+    user_dict[num] = np.ones([5, 5])
+
+if __name__ == "__main__":
+    
+    m = Manager()
+    u_dict = m.dict()
+
+    process_num = 8 #64-cores
+    p = Pool(process_num)
+
+    for i in range(20):
+        p.apply_async(show, args=(i, u_dict))
+
+    print('wait all childeren finish')
+
+    p.close() #关闭pool 再也不使用
+    p.join()  #等所有subprocess结束
+
+    u_dict = u_dict.keys()
+    print(u_dict)
