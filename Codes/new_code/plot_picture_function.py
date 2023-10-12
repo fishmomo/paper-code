@@ -23,7 +23,7 @@ def add_Chinese_provinces(ax, **kwargs):
     None
     '''
     proj = ccrs.PlateCarree()#投影方式，平面投影
-    shp_filepath = r'E:\邢台观测站\python_qixianglianxi\shp\China\china.shp'#读取shp文件，注意文件中应包括除shp外，
+    shp_filepath = r'H:\邢台观测站\python_qixianglianxi\shp\China\china.shp'#读取shp文件，注意文件中应包括除shp外，
     #prj,shx等文件
     reader = Reader(shp_filepath)
     provinces = cfeature.ShapelyFeature(reader.geometries(), proj)
